@@ -14,6 +14,8 @@
 		3B169273271493A7004C792D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B169272271493A7004C792D /* Assets.xcassets */; };
 		3B169276271493A7004C792D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B169274271493A7004C792D /* LaunchScreen.storyboard */; };
 		3B6D794C27159A7C003F2111 /* ViewControlerAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D794B27159A7C003F2111 /* ViewControlerAlert.swift */; };
+		3B6D79532715B1FD003F2111 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D79522715B1FD003F2111 /* NetworkManager.swift */; };
+		3B6D79572715B682003F2111 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6D79562715B682003F2111 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		3B169275271493A7004C792D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B169277271493A7004C792D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B6D794B27159A7C003F2111 /* ViewControlerAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControlerAlert.swift; sourceTree = "<group>"; };
+		3B6D79522715B1FD003F2111 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		3B6D79562715B682003F2111 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +62,58 @@
 		3B169268271493A6004C792D /* Winter */ = {
 			isa = PBXGroup;
 			children = (
-				3B169269271493A6004C792D /* AppDelegate.swift */,
-				3B16926B271493A6004C792D /* SceneDelegate.swift */,
-				3B16926D271493A6004C792D /* ViewController.swift */,
-				3B6D794B27159A7C003F2111 /* ViewControlerAlert.swift */,
-				3B16926F271493A6004C792D /* Main.storyboard */,
-				3B169272271493A7004C792D /* Assets.xcassets */,
-				3B169274271493A7004C792D /* LaunchScreen.storyboard */,
-				3B169277271493A7004C792D /* Info.plist */,
+				3B6D794D2715B094003F2111 /* Delegate */,
+				3B6D794F2715B0D8003F2111 /* Model */,
+				3B6D79502715B17B003F2111 /* View */,
+				3B6D794E2715B0A5003F2111 /* Controllers */,
+				3B6D79512715B1C4003F2111 /* SupportFile */,
 			);
 			path = Winter;
+			sourceTree = "<group>";
+		};
+		3B6D794D2715B094003F2111 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				3B169269271493A6004C792D /* AppDelegate.swift */,
+				3B16926B271493A6004C792D /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		3B6D794E2715B0A5003F2111 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3B16926F271493A6004C792D /* Main.storyboard */,
+				3B169274271493A7004C792D /* LaunchScreen.storyboard */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3B6D794F2715B0D8003F2111 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B6D79522715B1FD003F2111 /* NetworkManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B6D79502715B17B003F2111 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				3B16926D271493A6004C792D /* ViewController.swift */,
+				3B6D794B27159A7C003F2111 /* ViewControlerAlert.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3B6D79512715B1C4003F2111 /* SupportFile */ = {
+			isa = PBXGroup;
+			children = (
+				3B6D79562715B682003F2111 /* Constants.swift */,
+				3B169272271493A7004C792D /* Assets.xcassets */,
+				3B169277271493A7004C792D /* Info.plist */,
+			);
+			path = SupportFile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,8 +188,10 @@
 			files = (
 				3B16926E271493A6004C792D /* ViewController.swift in Sources */,
 				3B16926A271493A6004C792D /* AppDelegate.swift in Sources */,
+				3B6D79532715B1FD003F2111 /* NetworkManager.swift in Sources */,
 				3B6D794C27159A7C003F2111 /* ViewControlerAlert.swift in Sources */,
 				3B16926C271493A6004C792D /* SceneDelegate.swift in Sources */,
+				3B6D79572715B682003F2111 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +341,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z2TC3L6A9U;
 				INFOPLIST_FILE = Winter/Info.plist;
+				"INFOPLIST_FILE[sdk=*]" = Winter/SupportFile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
