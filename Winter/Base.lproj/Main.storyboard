@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -115,21 +116,36 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="magnifyingglass" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="UWD-uD-yeV">
-                                <rect key="frame" x="354" y="41" width="40" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="abp-fW-crI">
+                                <rect key="frame" x="354" y="38" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="tintColor" red="0.090196087960000004" green="0.050980389119999997" blue="0.01176470611" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </imageView>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal">
+                                    <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large" renderingMode="original"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="adA-NB-dpx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="2B6-Kt-rcY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="5dL-Xc-ok8"/>
                             <constraint firstItem="2B6-Kt-rcY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Eec-XI-1f5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="2B6-Kt-rcY" secondAttribute="trailing" id="JGr-iG-spG"/>
-                            <constraint firstItem="2B6-Kt-rcY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-44" id="RvY-ot-qGy"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="2B6-Kt-rcY" secondAttribute="bottom" constant="-34" id="vqy-CE-sbL"/>
+                            <constraint firstAttribute="bottom" secondItem="2B6-Kt-rcY" secondAttribute="bottom" id="hrQ-Lo-mMQ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="HumindityLabel" destination="R4M-SI-OCP" id="cnh-ie-9Y1"/>
+                        <outlet property="cityLabel" destination="GeJ-9r-RQv" id="vCe-F5-jy7"/>
+                        <outlet property="feelLikeLabel" destination="sDf-Ft-IRl" id="oL7-WQ-9Nd"/>
+                        <outlet property="pressureLabel" destination="Ch3-kU-bsz" id="ozN-qV-drL"/>
+                        <outlet property="temperatureLabel" destination="MLV-4d-IA1" id="eUe-Lh-6s4"/>
+                        <outlet property="toDayDateLabel" destination="pTu-Vi-O3z" id="BOj-lO-DOu"/>
+                        <outlet property="winterIconImage" destination="OVL-Jn-PRU" id="xCj-zU-uhd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
