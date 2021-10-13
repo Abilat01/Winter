@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var feelLikeLabel: UILabel!
     @IBOutlet weak var pressureLabel: UILabel!
     @IBOutlet weak var HumindityLabel: UILabel!
+    @IBOutlet weak var tempMinLabel: UILabel!
+    @IBOutlet weak var tempMaxLabel: UILabel!
     @IBOutlet weak var toDayDateLabel: UILabel!
     
     let networkManager = NetworkManager()
@@ -24,13 +26,15 @@ class ViewController: UIViewController {
         
         networkManager.fetchCurrentWeather(forCity: "London")
     }
-
     
-    @IBAction func searchPressed(_ sender: UIButton) {
+    @IBAction func searchPressed(_ sender: UIBarButtonItem) {
         self.presentSearchAlertControler(withTitle: "Enter city Name", messege: nil, style: .alert) { cityName in
             self.networkManager.fetchCurrentWeather(forCity: cityName)
         }
+        
+        
     }
     
 }
+
 
