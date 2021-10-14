@@ -9,19 +9,23 @@ import Foundation
 
 struct NetworkManager {
     
+    var onComplition: ((CurrentWeather) -> Void)?
+    
     let session = URLSession(configuration: .default) //настройки сессии
     
     func fetchCurrentWeather(forCity city: String) {
         
-        let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(APIKey)"
+        let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(APIKey)&units=metric&lang=ru"
         guard let url = URL(string: urlString) else { return }
         
         let task = session.dataTask(with: url) { (data, response, error) in
             
             if let data = data {
-                let currentWeather = self.parseJSON(withData: data)
+                if let currentWeather = self.parseJSON(withData: data) {
+                    self.onComplition?(currentWeather)
+                }
             }
-           
+            
         } //запрос данных
         task.resume()
     }
