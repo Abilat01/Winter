@@ -6,16 +6,31 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct NetworkManager {
     
+    let session = URLSession(configuration: .default)
+    
+    enum RequestType {
+        case cityName(city: String)
+        case coordinate(latitude: CLLocationDegrees, longitude: CLLocationDegrees)
+    }
+    
     var onComplition: ((CurrentWeather) -> Void)?
     
-    let session = URLSession(configuration: .default) //настройки сессии
+    func fetchCurrentWeather(forRequestType requestType: RequestType) {
+        var urlString = ""
+        switch requestType {
+        case .cityName(let city):
+            urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(APIKey)&units=metric&lang=ru"
+        case .coordinate(let latitude, let longitude):
+            urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(APIKey)&units=metric&lang=ru"
+        }
+        perfomeRequest(withURLString: urlString)
+    }
     
-    func fetchCurrentWeather(forCity city: String) {
-        
-        let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(APIKey)&units=metric&lang=ru"
+    func perfomeRequest(withURLString urlString: String) {
         guard let url = URL(string: urlString) else { return }
         
         let task = session.dataTask(with: url) { (data, response, error) in

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class ViewController: UIViewController {
     
@@ -20,6 +21,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var toDayDateLabel: UILabel!
     
     var networkManager = NetworkManager()
+    lazy var locationManager: CLLocationManager = {
+      var lm = CLLocationManager()
+        lm.desiredAccuracy = kCLLocationAccuracyKilometer
+        lm.requestWhenInUseAuthorization()
+        lm.delegate = self
+        return lm
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +38,14 @@ class ViewController: UIViewController {
             self.updeteInterFace(weather: currentWeather)
         }
         
-        networkManager.fetchCurrentWeather(forCity: "London")
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.requestLocation()
+        }
     }
     
     @IBAction func searchPressed(_ sender: UIBarButtonItem) {
         self.presentSearchAlertControler(withTitle: "Enter city Name", messege: nil, style: .alert) { [unowned self] cityName in
-            self.networkManager.fetchCurrentWeather(forCity: cityName)
+            self.networkManager.fetchCurrentWeather(forRequestType: NetworkManager.RequestType.cityName(city: cityName))
         }
     }
     
@@ -54,4 +65,18 @@ class ViewController: UIViewController {
     
 }
 
-
+extension ViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        let latitude = location.coordinate.latitude
+        let longitude = location.coordinate.longitude
+        
+        networkManager.fetchCurrentWeather(forRequestType: .coordinate(latitude: latitude, longitude: longitude))
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
+    
+}
